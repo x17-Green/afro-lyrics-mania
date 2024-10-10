@@ -6,6 +6,10 @@
 
 const express = require("express");
 const path = require("path");
+const db = require('./config/db')
+
+const setHeaders = require('./middleware/setHeaders');
+
 require('dotenv').config();
 
 /**
@@ -16,20 +20,34 @@ const app = express();
 const port = process.env.PORT || "3000";
 
 /**
+ * Routes
+ */
+
+const pageRoutes = require('./routes/pageRoutes');
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes')
+
+/**
  *  App Configuration
  */
 
-app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(setHeaders)
+
+app.db = db;
 
 /**
  * Routes Definitions
  */
 
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
-});
+app.use('/', pageRoutes);
+app.use('/users', userRoutes);
+app.use('/admin', adminRoutes);
+
 
 /**
  * Server Activation
@@ -38,3 +56,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
+
+
+exports.module = { db };
