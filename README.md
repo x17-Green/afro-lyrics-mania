@@ -188,7 +188,7 @@ Here is a high-level overview of the data flow through the system:
 
 The MVP will consist of the following system components:
 
-- **Frontend**: Built using React, Redux, RUG , and Material-UI for a responsive and user-friendly interface.
+- **Frontend**: Built using React, Redux, Rug, and Material-UI for a responsive and user-friendly interface.
 - **Backend API**: Built using Node.js, Express.js, and MongoDB
 - **Database**: MongoDB for storing user data, music lyrics, and metadata
 - **Authentication**: JSON Web Tokens (JWT) for authentication and authorization
