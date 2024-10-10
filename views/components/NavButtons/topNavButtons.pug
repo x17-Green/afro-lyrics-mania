@@ -1,0 +1,15 @@
+- var navButtonCSS = '/css/components/NavButtons/topNavButtons.css'
+
+html
+    head
+        link(rel="stylesheet" href=navButtonCSS)
+    body
+        block layout-content
+        div.NavButtons
+            a(href="/")
+                div.TopNavButton Home
+            a(href="/about")
+                div.TopNavButton About
+            a(href="/contact")
+                div.TopNavButton Contact
+                    

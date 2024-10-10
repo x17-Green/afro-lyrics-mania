@@ -1,0 +1,35 @@
+
+.NavButtons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.BottomNavButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+    height: 55px;
+    width: 150px;
+    
+    background: #7e0606;
+    
+    border-radius: 30px;
+    
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    
+    text-transform: capitalize;
+    
+    border-bottom: var(--ui-shadow-border);
+    box-shadow: var(--ui-shadow);
+}
+
+ul {
+    display: none;
+}

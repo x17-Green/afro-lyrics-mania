@@ -1,0 +1,43 @@
+extends layout
+
+block layout-content
+    div.View
+        div.Header
+            h1.Banner FreeMUSIC
+            include ../views/components/NavButtons/topNavButtons
+            //- each user in users
+            p.Banner Welcome #{user}
+        //- div.TopNavButtons
+        //-     ul
+        //-         li
+        //-             a(href="/")
+        //-                 div.TopNavButton Home
+        //-         li
+        //-             a(href="/about")
+        //-                 div.TopNavButton About
+        //-         li
+        //-             a(href="/contact")
+        //-                 div.TopNavButton Contact
+        div.Hero
+            div.Message
+                div.Title
+                    h3 Hub for The Best
+                    h1 Freebies For Devs
+                span.Details Access the FreeBYTE Team Portal
+            div.Message
+                div.Title
+                    h3 Making the Best
+                    h1 Freejazz For Devs
+                span.Details Access the FreeBYTE Team Portal
+            //- div.Message
+            //-     div.Title
+            //-         h3 Making the Best
+            //-         h1 Freebies For Devs
+            //-     span.Details Access the FreeBYTE Team Portal
+        div.Main
+        div.Section
+        div.Footer
+            include ../views/components/NavButtons/bottomNavButtons
+        //- div.NavButtons
+        //-     a(href="/user")
+        //-         div.NavButton Let's go
