@@ -4,14 +4,14 @@ block layout-content
     div.View
         div.Header
             h1.Banner FreeMUSIC
-            include ../views/components/NavButtons/topNavButtons
-            //- p Welcome: #{user.name} (#{user.email})
+            include ./components/NavButtons/topNavButtons
         //- each user in users
+        //- p Welcome: #{person.name} (#{person.email})
         div.UserList
-            //- ol 
-            //-     each person, index in users 
-            //-         p #{index + 1}. #{person.name} (#{person.email})
+            ol 
+                each person, index in users 
+                    p #{index + 1}. #{person.name} (#{person.email})
         div.Main
         div.Section
         div.Footer
-            include ../views/components/NavButtons/bottomNavButtons
+            include ./components/NavButtons/bottomNavButtons

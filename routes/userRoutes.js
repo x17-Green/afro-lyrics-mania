@@ -3,22 +3,15 @@
 const express = require('express');
 const routes = express.Router();
 const User = require('../models/User');
+const setHeaders = require('../middleware/setHeaders');
+const validateHeaders = require('../middleware/validateHeaders');
+
 // const db = require('../config/db');
 // const mongoose = db;
 const mongoose = require('mongoose');
 
-// Render the HTML page
-// routes.get('/', async (request, response) => {
-//     try {
-//         const users = await User.find();
-//         response.render("users", { title: "Users", users });
-//     } catch (error) {
-//         response.status(500).send(error);
-//     }
-// });
-
-// Send the JSON data
-routes.get('/api/users', async (request, response) => {
+// Get users
+routes.get('/api/users', setHeaders, validateHeaders, async (request, response) => {
     try {
         const users = await User.find();
         response.status(201).send(users);
@@ -27,32 +20,43 @@ routes.get('/api/users', async (request, response) => {
     }
 });
 
-routes.post('/api/users', async (request, response) => {
+// Add a user
+routes.post('/api/users', setHeaders, validateHeaders, async (req, res) => {
     try {
-        const user = new User(request.body);
+
+        if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.email || !req.body.password) {
+            return res.status(400).send({ message: 'Please fill in all required fields' });
+          }
+
+        const user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            // profilePicture: req.body.profilePicture,
+            // coverPicture: req.body.coverPicture,
+            // bio: req.body.bio,
+            // location: req.body.location,
+        });
         await user.save();
-        response.status(201).send(user);
-        // response.json(user);
-    } catch (error) {
-        response.status(400).send(error);
+        res.status(201).send(user);
+        console.log(`User: [${user._id}] - created successfully`)
+    } catch (err) {
+        console.error(err);
+        res.status(400).send({ message: 'Error creating user', err });
     }
 });
 
 // Get a user
-routes.get('/api/users/:id', async (request, response) => {
+routes.get('/api/user/:id', setHeaders, async (request, response) => {
     try {
         const userId = request.params.id;
         const user = await User.findById(userId);
         if (!user) {
             response.status(404).send({ message: 'User  not found' });
         } else {
-            response.send({ 
-                UserID: user._id,
-                UserName: user.username,
-                Email: user.email,
-                Name: user.name
-            });
-            // response.json({ userId: user._id });
+            response.status(200).send(user)
         }
     } catch (error) {
         response.status(500).send(error);
@@ -60,7 +64,7 @@ routes.get('/api/users/:id', async (request, response) => {
 });
 
 // Update a user
-routes.put('/api/users/:id', async (request, response) => {
+routes.put('/api/user/:id', setHeaders, async (request, response) => {
     try {
         const userId = request.params.id
         const user = await User.findByIdAndUpdate(userId, request.body, { new: true });
@@ -75,7 +79,7 @@ routes.put('/api/users/:id', async (request, response) => {
 });
 
 // Delete a user
-routes.delete('/api/users/:id', async (request, response) => {
+routes.delete('/api/user/:id', setHeaders, async (request, response) => {
     const userId = request.params.id;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return response.status(400).send({ message: 'Invalid user ID' });
@@ -87,7 +91,7 @@ routes.delete('/api/users/:id', async (request, response) => {
         }
         await User.findByIdAndDelete(userId);
         response.send({ message: 'User ' + user._id + ' deleted successfully' });
-        console.log('User ' + user._id + ' deleted successfully')
+        console.log('User: [' + user._id + '] - deleted successfully')
     } catch (error) {
         if (error instanceof mongoose.Error) {
             console.error('MongoError:', error);

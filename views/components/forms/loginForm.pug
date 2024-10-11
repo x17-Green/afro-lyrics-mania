@@ -1,0 +1,17 @@
+- var regFormCss = '/css/components/forms/registrationForm.css'
+
+html
+    head
+        link(rel="stylesheet" href=regFormCss)
+    body
+        block layout-content
+        form(id="user-form" class="materialize glowing-edge")
+        
+            label(for="username") Username:
+            input(type="text" id="username" name="username" required)
+
+            label(for="email") Email:
+            input(type="email" id="email" name="email" required)
+
+            label(for="password") Password:
+            input(type="password" id="password" name="password" required)

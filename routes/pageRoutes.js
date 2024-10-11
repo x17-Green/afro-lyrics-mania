@@ -8,9 +8,9 @@ routes.get("/", async (request, response) => {
     response.render("index", { title: "Home" });
 });
 
-routes.get('/user', async (request, response) => {
+routes.get('/users', async (request, response) => {
     try {
-        const users = await User.find();
+        const users = await User.findOne();
         response.render("users", { title: "Users", users });
     } catch (error) {
         response.status(500).send(error);
@@ -18,7 +18,13 @@ routes.get('/user', async (request, response) => {
 });
 
 routes.get("/output", async (request, response) => {
-    response.render("output", { title: "Test Output" });
+    try {
+        const users = await User.find();
+        // response.render("users", { title: "Users", users });
+        response.render("output", { title: "Test Output", users });
+    } catch (error) {
+        response.status(500).send(error);
+    }
 });
 
 

@@ -1,9 +1,10 @@
 // getUserByID.js
 
 const textarea = document.getElementById("virtual-text-area");
-fetch(`/users/${'6707e78a6f65f0c3e1d299fb'}`)
+fetch(`/users/api/user/${'67088495eb2dc078d592a382'}`)
   .then(response => response.json())
   .then(data => {
-    textarea.value = data.userId;
+    console.log(data);
+    textarea.value = data.fullName;
   })
   .catch(error => console.error(error));
