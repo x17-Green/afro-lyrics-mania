@@ -6,6 +6,7 @@
 
 const express = require("express");
 const path = require("path");
+const jsonifier = require('./middleware/jsonifier')
 const db = require('./config/db')
 
 require('dotenv').config();
@@ -22,7 +23,7 @@ const port = process.env.PORT || "3000";
  */
 
 const pageRoutes = require('./routes/pageRoutes');
-const userRoutes = require('./routes/userRoutes');
+const userApi = require('./routes/apis/userApi');
 const adminRoutes = require('./routes/adminRoutes')
 
 /**
@@ -34,6 +35,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(jsonifier)
 // app.use(setHeaders)
 
 app.db = db;
@@ -43,9 +45,13 @@ app.db = db;
  */
 
 app.use('/', pageRoutes);
-app.use('/users', userRoutes);
+app.use('/users', userApi);
 app.use('/admin', adminRoutes);
 
+
+/**
+ * Api Connections
+ */
 
 /**
  * Server Activation

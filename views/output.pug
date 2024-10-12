@@ -4,15 +4,16 @@ block layout-content
     div.View
         div.Header
             h1.Banner FreeMUSIC
-            include ./components/NavButtons/topNavButtons
-        each user in users
-            p Welcome: #{user.name} (#{user.email})
-        textarea#virtual-text-area(readonly) 
+            include components/NavButtons/topNavButtons
+        //- each user in users
+        //-     p Welcome: #{user.name} (#{user.email})
         div.Main
-        include ./components/forms/registrationForm
+            textarea#virtual-text-area(readonly) 
+            include components/user/getUserById
+                //- include components/forms/registrationForm
         div.Section
             //- div.Form 
         div.Footer
-            include ./components/NavButtons/bottomNavButtons
+            include components/NavButtons/bottomNavButtons
 
     script(src='scripts/components/users/getUserByID.js')

@@ -5,12 +5,13 @@ const routes = express.Router();
 const User = require('../models/User');
 
 routes.get("/", async (request, response) => {
-    response.render("index", { title: "Home" });
+    const users = await User.findOne();
+    response.render("index", { title: "Home", users });
 });
 
 routes.get('/users', async (request, response) => {
     try {
-        const users = await User.findOne();
+        const users = await User.find();
         response.render("users", { title: "Users", users });
     } catch (error) {
         response.status(500).send(error);

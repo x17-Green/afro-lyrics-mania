@@ -5,12 +5,12 @@ block layout-content
         div.Header
             h1.Banner FreeMUSIC
             include ./components/NavButtons/topNavButtons
-        //- each user in users
-        //- p Welcome: #{person.name} (#{person.email})
+        //- each person in users
+        //-     p Welcome: #{person.fullName} (#{person.email})
         div.UserList
             ol 
                 each person, index in users 
-                    p #{index + 1}. #{person.name} (#{person.email})
+                    p #{index + 1}. #{person.fullName} (#{person.email})
         div.Main
         div.Section
         div.Footer
