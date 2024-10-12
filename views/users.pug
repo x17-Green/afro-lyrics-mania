@@ -12,6 +12,12 @@ block layout-content
                 each person, index in users 
                     p #{index + 1}. #{person.fullName} (#{person.email})
         div.Main
+            include components/user/getUserById
+            p#user-info-paragraph User Information (Single Line):
+            p User Information (Multi-line)
+                textarea#user-info-textarea(readonly) 
         div.Section
         div.Footer
             include ./components/NavButtons/bottomNavButtons
+
+        //- script(src='scripts/components/users/getUserByID.js')

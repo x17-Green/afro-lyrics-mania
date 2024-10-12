@@ -7,10 +7,14 @@ block layout-content
             include components/NavButtons/topNavButtons
         //- each user in users
         //-     p Welcome: #{user.name} (#{user.email})
+        //- include components/user/getUserById
+        div.Hero
+            include components/forms/registrationForm
+            include components/forms/loginForm
         div.Main
-            textarea#virtual-text-area(readonly) 
-            include components/user/getUserById
-                //- include components/forms/registrationForm
+            p#welcome-message User Information (Single Line):
+        p User Information (Multi-line)
+            textarea#user-info-textarea(readonly) 
         div.Section
             //- div.Form 
         div.Footer

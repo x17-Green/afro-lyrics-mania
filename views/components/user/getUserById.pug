@@ -1,8 +1,13 @@
 html
     head
-        //- link(rel="stylesheet" href=regFormCss)
+        title User Information
     body
         block layout-content
-            p(class='getUserById') User ID:
+            h1#welcome-message
+            p Your full name is: 
+            p#user-full-name
 
-    script(src='scripts/components/users/getUserByID.js')
+            p User Information (All Details):
+            textarea#user-info-textarea(readonly, rows="5", cols="50")
+
+        script(src='scripts/components/users/getUserByID.js')

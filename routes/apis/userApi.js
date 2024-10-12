@@ -1,4 +1,4 @@
-// routes/userRoutes.js
+// routes/userApi.js
 
 const express = require('express');
 const routes = express.Router();
@@ -11,7 +11,7 @@ const validateHeaders = require('../../middleware/validateHeaders');
 const mongoose = require('mongoose');
 
 // Get users
-routes.get('/api/users', setHeaders, validateHeaders, async (request, response) => {
+routes.get('/users', setHeaders, validateHeaders, async (request, response) => {
     try {
         const users = await User.find();
         const userData = users.map((user) => {
@@ -38,7 +38,7 @@ routes.get('/api/users', setHeaders, validateHeaders, async (request, response) 
 });
 
 // Add a user
-routes.post('/api/users', setHeaders, validateHeaders, async (request, response) => {
+routes.post('/users', setHeaders, validateHeaders, async (request, response) => {
     try {
         
         // Validate user input
@@ -89,8 +89,8 @@ routes.post('/api/users', setHeaders, validateHeaders, async (request, response)
     }
 });
 
-// Get a user
-routes.get('/api/user/:id', setHeaders, validateHeaders, async (request, response) => {
+// Get a user by ID
+routes.get('/user/:id', setHeaders, validateHeaders, async (request, response) => {
     try {
         const userId = request.params.id;
         if (userId.length < 24) {
@@ -114,7 +114,7 @@ routes.get('/api/user/:id', setHeaders, validateHeaders, async (request, respons
             };
             
             response.jsonify(200, userData, `User ID: ${userId}`);
-            console.log(JSON.stringify(user, null, 2));
+            console.log(JSON.stringify(user, null, 4));
         }
     } catch (error) {
         response.status(500).send({ error: 'Internal server error' });
@@ -123,7 +123,7 @@ routes.get('/api/user/:id', setHeaders, validateHeaders, async (request, respons
 });
 
 // Update a user
-routes.put('/api/user/:id', setHeaders, async (request, response) => {
+routes.put('/user/:id', setHeaders, async (request, response) => {
     try {
         const userId = request.params.id
         const user = await User.findByIdAndUpdate(userId, request.body, { new: true });
@@ -138,7 +138,7 @@ routes.put('/api/user/:id', setHeaders, async (request, response) => {
 });
 
 // Delete a user
-routes.delete('/api/user/:id', setHeaders, async (request, response) => {
+routes.delete('/user/:id', setHeaders, async (request, response) => {
     const userId = request.params.id;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return response.status(400).send({ message: 'Invalid user ID' });
@@ -162,5 +162,40 @@ routes.delete('/api/user/:id', setHeaders, async (request, response) => {
         response.status(500).send(error);
     }
 });
+
+
+// Get a user by ID
+routes.get('/user/:email', setHeaders, validateHeaders, async (request, response) => {
+    try {
+        const userEmail = request.params.email;
+        // if (userId.length < 24) {
+        //     response.status(400).send({ ERROR: `${response.statusCode}: Input must be a 24 character hex string` });
+        //     console.log(`ERROR: ${response.statusCode}: Input must be a 24 character hex string`);
+        //     return;
+        // }
+
+        const user = await User.findById(userEmail);
+        if (!user) {
+            response.status(404).send({ ERROR: `${response.statusCode}: User with [${userEmail}] not found` });
+            console.log(`ERROR: ${response.statusCode}: User with [${userEmail}] not found`);
+        } else {
+            const userData = {
+                // _id: user._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                username: user.username,
+                email: user.email,
+                fullName: user.fullName
+            };
+            
+            response.jsonify(200, userData, `User Email: ${userEmail}`);
+            console.log(JSON.stringify(user.email, null, 2));
+        }
+    } catch (error) {
+        response.status(500).send({ error: 'Internal server error' });
+        console.error(`ERROR: ${response.statusCode}:`, error);
+    }
+});
+
 
 module.exports = routes;

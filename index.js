@@ -19,14 +19,6 @@ const app = express();
 const port = process.env.PORT || "3000";
 
 /**
- * Routes
- */
-
-const pageRoutes = require('./routes/pageRoutes');
-const userApi = require('./routes/apis/userApi');
-const adminRoutes = require('./routes/adminRoutes')
-
-/**
  *  App Configuration
  */
 
@@ -36,22 +28,28 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(jsonifier)
-// app.use(setHeaders)
-
 app.db = db;
 
 /**
  * Routes Definitions
  */
 
+const pageRoutes = require('./routes/pageRoutes');
+const adminRoutes = require('./routes/adminRoutes')
+
 app.use('/', pageRoutes);
-app.use('/users', userApi);
 app.use('/admin', adminRoutes);
 
 
 /**
- * Api Connections
- */
+ * API Route Connections
+*/
+const userApi = require('./routes/apis/userApi');
+const profileApi = require('./routes/apis/profileApi');
+
+app.use('/api', userApi);
+app.use('/api', profileApi);
+
 
 /**
  * Server Activation

@@ -5,7 +5,9 @@ const routes = express.Router();
 const User = require('../models/User');
 
 routes.get("/", async (request, response) => {
-    response.render("admin/index", { title: "Admin Backend" });
+    const users = await User.find();
+    response.render("admin/index", { title: "Admin Backend", users });
 });
 
 module.exports = routes;
+

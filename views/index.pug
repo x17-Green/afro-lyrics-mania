@@ -7,6 +7,7 @@ block layout-content
             include ./components/NavButtons/topNavButtons
             //- each user in users
             p.Banner Welcome #{users.fullName}
+            p#welcome-message
         div.Hero
             div.Message
                 div.Title
@@ -22,3 +23,5 @@ block layout-content
         div.Section
         div.Footer
             include ./components/NavButtons/bottomNavButtons
+
+    script(src='scripts/components/users/getUserByID.js')
