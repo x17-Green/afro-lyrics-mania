@@ -4,24 +4,25 @@ block layout-content
     div.View
         div.Header
             h1.Banner Afro Lyrics Mania
-            include ./components/NavButtons/topNavButtons
+            include ./components/buttons/NavButtons/topNavButtons
             //- each user in users
             p.Banner Welcome #{users.fullName}
-            p#welcome-message
+            p#welcome-message Howdy
         div.Hero
-            div.Message
-                div.Title
-                    h3 Hub for The Best
-                    h1 Freebies For Devs
-                span.Details Access the FreeBYTE Team Portal
-            div.Message
-                div.Title
-                    h3 Making the Best
-                    h1 Freejazz For Devs
-                span.Details Access the FreeBYTE Team Portal
+            include ./components/cards/heroCard
+            //- div.Message
+            //-     div.Title
+            //-         h3 Hub for The Best
+            //-         h1 Freebies For Devs
+            //-     span.Details Access the FreeBYTE Team Portal
+            //- div.Message
+            //-     div.Title
+            //-         h3 Making the Best
+            //-         h1 Freejazz For Devs
+            //-     span.Details Access the FreeBYTE Team Portal
         div.Main
         div.Section
         div.Footer
-            include ./components/NavButtons/bottomNavButtons
+            include ./components/buttons/NavButtons/bottomNavButtons
 
     script(src='scripts/components/users/getUserByID.js')

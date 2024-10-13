@@ -3,12 +3,13 @@ extends layout
 block layout-content
     div.View
         div.Header
-            h1.Banner FreeMUSIC
-            include components/NavButtons/topNavButtons
+            h1.Banner AFRO LYRICS MANIA
+            include components/buttons/NavButtons/topNavButtons
         //- each user in users
         //-     p Welcome: #{user.name} (#{user.email})
         //- include components/user/getUserById
         div.Hero
+            //- include components/cards/heroCard.pug
             include components/forms/registrationForm
             include components/forms/loginForm
         div.Main
@@ -18,6 +19,6 @@ block layout-content
         div.Section
             //- div.Form 
         div.Footer
-            include components/NavButtons/bottomNavButtons
+            include components/buttons/NavButtons/bottomNavButtons
 
     script(src='scripts/components/users/getUserByID.js')

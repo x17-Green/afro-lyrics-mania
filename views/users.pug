@@ -3,11 +3,11 @@ extends layout
 block layout-content
     div.View
         div.Header
-            h1.Banner FreeMUSIC
-            include ./components/NavButtons/topNavButtons
-        //- each person in users
-        //-     p Welcome: #{person.fullName} (#{person.email})
-        div.UserList
+            h1.Banner AFRO LYRICS MANIA
+            include ./components/buttons/NavButtons/topNavButtons
+            //- each person in users
+            p Welcome: #{users.fullName} (#{users.email})
+        //- div.UserList
             ol 
                 each person, index in users 
                     p #{index + 1}. #{person.fullName} (#{person.email})
@@ -15,9 +15,9 @@ block layout-content
             include components/user/getUserById
             p#user-info-paragraph User Information (Single Line):
             p User Information (Multi-line)
-                textarea#user-info-textarea(readonly) 
+                textarea#user-info-textarea(readonly, rows="5", cols="50")
         div.Section
         div.Footer
-            include ./components/NavButtons/bottomNavButtons
+            include ./components/buttons/NavButtons/bottomNavButtons
 
-        //- script(src='scripts/components/users/getUserByID.js')
+        script(src='scripts/components/users/getUserByID.js')

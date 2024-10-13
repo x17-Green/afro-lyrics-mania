@@ -116,6 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Populate full name
     populateElement('user-full-name', userData => userData.fullName);
 
+    // Populate all user info, single line 
+    populateElement('user-info-paragraph', userData => `User ID: - [${userData._id}] \t | Name: ${userData.fullName} \t | Email: (${userData.email})` )
+
     // Populate all user info
     populateElement('user-info-textarea', userData => 
         `User ID: ${userData._id}\nName: ${userData.fullName}\nEmail: ${userData.email}`

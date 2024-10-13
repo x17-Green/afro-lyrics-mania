@@ -85,7 +85,7 @@ routes.post('/users', setHeaders, validateHeaders, async (request, response) => 
         console.log(`User: [{${user._id}}-(${user.username})] - created successfully\r\n`);
     } catch (err) {
         console.error(err);
-        res.status(400).send({ message: 'Error creating user' });
+        response.status(400).send({ message: 'Error creating user' });
     }
 });
 
@@ -122,7 +122,7 @@ routes.get('/user/:id', setHeaders, validateHeaders, async (request, response) =
     }
 });
 
-// Update a user
+// Update a user by ID
 routes.put('/user/:id', setHeaders, async (request, response) => {
     try {
         const userId = request.params.id
@@ -137,7 +137,7 @@ routes.put('/user/:id', setHeaders, async (request, response) => {
     }
 });
 
-// Delete a user
+// Delete a user by ID
 routes.delete('/user/:id', setHeaders, async (request, response) => {
     const userId = request.params.id;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -164,38 +164,38 @@ routes.delete('/user/:id', setHeaders, async (request, response) => {
 });
 
 
-// Get a user by ID
-routes.get('/user/:email', setHeaders, validateHeaders, async (request, response) => {
-    try {
-        const userEmail = request.params.email;
-        // if (userId.length < 24) {
-        //     response.status(400).send({ ERROR: `${response.statusCode}: Input must be a 24 character hex string` });
-        //     console.log(`ERROR: ${response.statusCode}: Input must be a 24 character hex string`);
-        //     return;
-        // }
+// Get a user by Email
+// routes.get('/user/:email', setHeaders, validateHeaders, async (request, response) => {
+//     try {
+//         const userEmail = request.params.email;
+//         // if (userId.length < 24) {
+//         //     response.status(400).send({ ERROR: `${response.statusCode}: Input must be a 24 character hex string` });
+//         //     console.log(`ERROR: ${response.statusCode}: Input must be a 24 character hex string`);
+//         //     return;
+//         // }
 
-        const user = await User.findById(userEmail);
-        if (!user) {
-            response.status(404).send({ ERROR: `${response.statusCode}: User with [${userEmail}] not found` });
-            console.log(`ERROR: ${response.statusCode}: User with [${userEmail}] not found`);
-        } else {
-            const userData = {
-                // _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                username: user.username,
-                email: user.email,
-                fullName: user.fullName
-            };
+//         const user = await User.findById(userEmail);
+//         if (!user) {
+//             response.status(404).send({ ERROR: `${response.statusCode}: User with [${userEmail}] not found` });
+//             console.log(`ERROR: ${response.statusCode}: User with [${userEmail}] not found`);
+//         } else {
+//             const userData = {
+//                 // _id: user._id,
+//                 firstName: user.firstName,
+//                 lastName: user.lastName,
+//                 username: user.username,
+//                 email: user.email,
+//                 fullName: user.fullName
+//             };
             
-            response.jsonify(200, userData, `User Email: ${userEmail}`);
-            console.log(JSON.stringify(user.email, null, 2));
-        }
-    } catch (error) {
-        response.status(500).send({ error: 'Internal server error' });
-        console.error(`ERROR: ${response.statusCode}:`, error);
-    }
-});
+//             response.jsonify(200, userData, `User Email: ${userEmail}`);
+//             console.log(JSON.stringify(user.email, null, 2));
+//         }
+//     } catch (error) {
+//         response.status(500).send({ error: 'Internal server error' });
+//         console.error(`ERROR: ${response.statusCode}:`, error);
+//     }
+// });
 
 
 module.exports = routes;

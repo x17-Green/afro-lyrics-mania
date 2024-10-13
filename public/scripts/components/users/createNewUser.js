@@ -14,7 +14,7 @@ form.addEventListener('submit', async (event) => {
     
     // Send a POST request to the /api/users endpoint
     try {
-        const response = await fetch('/users/api/users', {
+        const response = await fetch('/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -101,6 +101,8 @@ a {
     align-items: center;
     height: 100vh; /* Add this line to set the height to 100vh */
     margin: auto; /* Add this line to center the Hero section vertically */
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .Hero .Message {
