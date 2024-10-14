@@ -16,7 +16,7 @@ routes.get("/", async (request, response) => {
 
 routes.get('/users', async (request, response) => {
     try {
-        const users = await User.find();
+        const users = await User.findOne();
         response.render("users", { title: "Users", users });
     } catch (error) {
         response.status(500).send(error);
@@ -48,10 +48,10 @@ routes.get('/profile', async (req, response) => {
 });
 
 const articles = require('../public/scripts/components/cards/heroCard')
-routes.get('/hero/cards/template', (req, response) => {
-    console.log("Rendering heroCard template...")
-    response.render("components/cards/heroCard", { title: "Hero card", articles });
-});
+// routes.get('/hero/cards/template', (req, response) => {
+//     console.log("Rendering heroCard template...")
+//     response.render("components/cards/heroCard", { title: "Hero card", articles });
+// });
 
 // routes.get('/hero/cards/data', setHeaders, validateHeaders, async (req, response) => {
 //     const jsonString = JSON.stringify(articles, null, 2)
@@ -64,5 +64,12 @@ routes.get('/hero/cards/data', setHeaders, validateHeaders, async (req, response
     response.header('Content-Type', 'application/json');
     response.json(articles);
 });
+
+
+// routes.get('/profile/toolbar/profile_toolbar', (req, response) => {
+//     console.log("Rendering profile toolbar template...")
+//     response.render("components/toolbar/profileToolbar", { title: "Profile Toolbar" });
+// });
+
 
 module.exports = routes;

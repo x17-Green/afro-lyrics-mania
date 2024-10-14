@@ -1,0 +1,25 @@
+block variables
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title #{title} | Afro Lyrics Mania
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" type="text/css")
+        link(rel="stylesheet" href="/css/components/assets/defaultBackground.css")
+        link(rel="stylesheet" type="text/css" href="/css/components/toolbar/profileToolbar.css")
+    body
+    div.background
+        div#root
+        include ../components/toolbar/profileToolbar
+
+        block layout-content
+        main.Content
+        h1 AFRO LYRICS MANIA
+        //- include components/buttons/NavButtons/topNavButtons
+
+            .Footer
+                //- include components/buttons/NavButtons/bottomNavButtons
+                //- p &copy; 2024 Afro Lyrics Mania. All rights reserved.

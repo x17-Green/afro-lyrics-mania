@@ -15,9 +15,11 @@
 html,
 body,
 #root {
-    height: 100%;
-    width: 100%;
-}
+    position: relative;
+    z-index: 2;
+    overflow-y: auto; /* add this to make the page scrollable */
+    height: 100vh; /* set the height to 100vh to enable scrolling */
+  }
 
 body {
     margin: 0;
@@ -81,11 +83,12 @@ a {
     align-items: center;
     
     width: 100%;
+    margin-top: 0;
     
     border-radius: 5px;
     border-bottom: var(--ui-shadow-border);
     box-shadow: var(--ui-shadow);
-
+    
 }
 .Banner {
     overflow: hidden;
@@ -149,36 +152,36 @@ a {
 }
 
 /* .NavButtons {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 20px;
+display: flex;
+width: 100%;
+justify-content: space-around;
+align-items: center;
+padding: 0 20px;
 } */
 
 /* .NavButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    
-    height: 55px;
-    width: 150px;
-    position: fixed;
-    bottom: 2%;
-    
-    background: #fa4141;
-    
-    border-radius: 30px;
-    
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    
-    text-transform: capitalize;
-    
-    border-bottom: var(--ui-shadow-border);
-    box-shadow: var(--ui-shadow);
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+
+height: 55px;
+width: 150px;
+position: fixed;
+bottom: 2%;
+
+background: #fa4141;
+
+border-radius: 30px;
+
+font-size: 16px;
+font-weight: bold;
+color: white;
+
+text-transform: capitalize;
+
+border-bottom: var(--ui-shadow-border);
+box-shadow: var(--ui-shadow);
 } */
 
 /* Footer Section */
@@ -190,6 +193,7 @@ a {
     
     width: 100%;
     padding: 0.8%;
+    margin-bottom: 0;
     
     border-radius: 5px;
     border-bottom: var(--ui-shadow-border);

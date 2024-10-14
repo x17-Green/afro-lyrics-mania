@@ -3,8 +3,6 @@ extends layout
 block layout-content
     div.View
         div.Header
-            h1.Banner AFRO LYRICS MANIA
-            include components/buttons/NavButtons/topNavButtons
         //- each user in users
         //-     p Welcome: #{user.name} (#{user.email})
         //- include components/user/getUserById
@@ -15,10 +13,9 @@ block layout-content
         div.Main
             p#welcome-message User Information (Single Line):
         p User Information (Multi-line)
-            textarea#user-info-textarea(readonly) 
+            textarea#user-info-textarea(readonly, rows="5", cols="50")
         div.Section
             //- div.Form 
         div.Footer
-            include components/buttons/NavButtons/bottomNavButtons
 
     script(src='scripts/components/users/getUserByID.js')
