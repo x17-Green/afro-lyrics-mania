@@ -3,13 +3,15 @@ extends layout
 block layout-content
     div.View
         div.Header
-            //- h1.Banner Afro Lyrics Mania
+            h1.Banner Afro Lyrics Mania
+        //- dive.Hero
+            //- include ./components/cards/heroCard
+        dive.Hero
+            //- include ./components/cards/heroCard
             //- include ./components/buttons/NavButtons/topNavButtons
-            //- p.Banner Welcome #{users.fullName}
-            //- each user in users
-            //- p#welcome-message Howdy
-    //- include ./components/cards/heroCard
-        //- div.Hero
+                p.Banner Welcome #{users.fullName}
+                //- each user in users
+                //- div.Hero
             //- div
             //- div.Message
             //-     div.Title
@@ -22,8 +24,9 @@ block layout-content
             //-         h1 Freejazz For Devs
             //-     span.Details Access the FreeBYTE Team Portal
         div.Main
-        div.Section
-        div.Footer
+            p.Banner#welcome-message Howdy
+            div.Section
+            div.Footer
             //- include ./components/buttons/NavButtons/bottomNavButtons
 
-    //- script(src='scripts/components/users/getUserByID.js')
+    script(src='scripts/components/users/getUserByID.js')

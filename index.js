@@ -4,12 +4,11 @@
  * Required External Modules
  */
 
-const express = require("express");
 const path = require("path");
-const dotenv = require("dotenv")
-// const jwt = require('jsonwebtoken')
-const jsonifier = require('./middleware/jsonifier')
-const db = require('./config/db')
+const dotenv = require("dotenv");
+const db = require('./config/db');
+const express = require("express");
+const jsonifier = require('./middleware/jsonifier');
 
 dotenv.config();
 
@@ -30,7 +29,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(jsonifier);
-// app.use(jwt);
 app.db = db;
 
 /**
@@ -39,16 +37,18 @@ app.db = db;
 
 const pageRoutes = require('./routes/pageRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const authRoutes = require('./controllers/auth')
+// const authRoutes = require('./controllers/auth.js')
+const authRoutes = require('./routes/authRoutes.js')
+
 
 app.use('/', pageRoutes);
-app.use('/', authRoutes)
+app.use('/auth', authRoutes)
 app.use('/admin', adminRoutes);
 
 
 /**
  * API Route Connections
-*/
+ */
 const userApi = require('./routes/apis/userApi');
 const profileApi = require('./routes/apis/profileApi');
 

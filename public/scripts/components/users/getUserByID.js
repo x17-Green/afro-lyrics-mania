@@ -29,7 +29,7 @@ function populateElement(elementId, contentFunction) {
         return;
     }
 
-    getUserInfo('6709f5bccf15d93164b952d0') // Replace with dynamic user ID when available
+    getUserInfo('6709f5bcbf15d93164b952d0') // Replace with dynamic user ID when available
         .then(userData => {
             const content = contentFunction(userData);
             if (element.tagName.toLowerCase() === 'textarea') {

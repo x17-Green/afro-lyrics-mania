@@ -5,9 +5,6 @@ const routes = express.Router();
 const User = require('../../models/User');
 const setHeaders = require('../../middleware/setHeaders');
 const validateHeaders = require('../../middleware/validateHeaders');
-
-// const db = require('../config/db');
-// const mongoose = db;
 const mongoose = require('mongoose');
 
 // Get users
@@ -162,40 +159,5 @@ routes.delete('/user/:id', setHeaders, async (request, response) => {
         response.status(500).send(error);
     }
 });
-
-
-// Get a user by Email
-// routes.get('/user/:email', setHeaders, validateHeaders, async (request, response) => {
-//     try {
-//         const userEmail = request.params.email;
-//         // if (userId.length < 24) {
-//         //     response.status(400).send({ ERROR: `${response.statusCode}: Input must be a 24 character hex string` });
-//         //     console.log(`ERROR: ${response.statusCode}: Input must be a 24 character hex string`);
-//         //     return;
-//         // }
-
-//         const user = await User.findById(userEmail);
-//         if (!user) {
-//             response.status(404).send({ ERROR: `${response.statusCode}: User with [${userEmail}] not found` });
-//             console.log(`ERROR: ${response.statusCode}: User with [${userEmail}] not found`);
-//         } else {
-//             const userData = {
-//                 // _id: user._id,
-//                 firstName: user.firstName,
-//                 lastName: user.lastName,
-//                 username: user.username,
-//                 email: user.email,
-//                 fullName: user.fullName
-//             };
-            
-//             response.jsonify(200, userData, `User Email: ${userEmail}`);
-//             console.log(JSON.stringify(user.email, null, 2));
-//         }
-//     } catch (error) {
-//         response.status(500).send({ error: 'Internal server error' });
-//         console.error(`ERROR: ${response.statusCode}:`, error);
-//     }
-// });
-
 
 module.exports = routes;
